@@ -26,4 +26,27 @@ class Subscription {
     this.description,
   });
 
+  Subscription.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
+        name = json['name'],
+        startDate = DateTime.parse(json['startDate']),
+        price = json['price'].toDouble(),
+        category = Category.values[json['category']],
+        recurrenceRule = RecurrenceRule.fromJson(json['recurrenceRule']),
+        endDate = json['endDate'] != null ? DateTime.parse(json['endDate']) : null,
+        description = json['description'];
+  
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'startDate': startDate.toIso8601String(),
+      'price': price,
+      'category': category.index,
+      'recurrenceRule': recurrenceRule.toJson(),
+      'endDate': endDate?.toIso8601String(),
+      'description': description,
+    };
+  }
+  
 }
