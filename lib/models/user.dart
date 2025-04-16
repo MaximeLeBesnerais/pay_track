@@ -123,18 +123,13 @@ class UserPref {
     await save();
   }
 
-  Future<void> setAll({
-    String? name,
-    Subscription? salary,
-    MonthlyMode? monthlyMode,
-    DominantColor? dominantColor,
-    ThemeMode? themeMode,
-  }) async {
-    if (name != null) this.name = name;
-    if (salary != null) this.salary = salary;
-    if (monthlyMode != null) this.monthlyMode = monthlyMode;
-    if (dominantColor != null) this.dominantColor = dominantColor;
-    if (themeMode != null) this.themeMode = themeMode;
+  Future<void> setAll(String? name, Subscription? salary,
+      MonthlyMode monthlyMode, DominantColor dominantColor, ThemeMode themeMode) async {
+    this.name = name;
+    this.salary = salary;
+    this.monthlyMode = monthlyMode;
+    this.dominantColor = dominantColor;
+    this.themeMode = themeMode;
     await save();
   }
 }
