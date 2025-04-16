@@ -5,7 +5,6 @@ enum Category { music, video, gaming, social, income, taxes, other }
 
 
 class Subscription {
-  final String id;
   final String name;
   final DateTime startDate;
   final double price;
@@ -16,7 +15,6 @@ class Subscription {
 
 
   Subscription({
-    required this.id,
     required this.name,
     required this.startDate,
     required this.price,
@@ -27,8 +25,7 @@ class Subscription {
   });
 
   Subscription.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        name = json['name'],
+      : name = json['name'],
         startDate = DateTime.parse(json['startDate']),
         price = json['price'].toDouble(),
         category = Category.values[json['category']],
@@ -38,7 +35,6 @@ class Subscription {
   
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
       'name': name,
       'startDate': startDate.toIso8601String(),
       'price': price,
