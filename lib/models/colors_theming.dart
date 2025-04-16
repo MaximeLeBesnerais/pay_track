@@ -16,6 +16,12 @@ const Map<DominantColor, Color> colorMapEnum = {
   DominantColor.orange: Colors.orange,
 };
 
+const Map<ChosenTheming, ThemeMode> themeModeMapEnum = {
+  ChosenTheming.light: ThemeMode.light,
+  ChosenTheming.dark: ThemeMode.dark,
+  ChosenTheming.system: ThemeMode.system,
+};
+
 class ColorsTheming {
   ColorsTheming._privateConstructor();
   static final ColorsTheming _instance = ColorsTheming._privateConstructor();
