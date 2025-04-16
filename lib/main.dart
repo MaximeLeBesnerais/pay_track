@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pay_track/screens/home.dart';
-import 'package:pay_track/screens/settings.dart';
+import 'package:pay_track/screens/settings/settings.dart';
 import 'package:pay_track/screens/stats.dart';
 
 class _HomeHandler extends StatefulWidget {
