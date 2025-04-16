@@ -1,4 +1,3 @@
-import 'dart:math';
 
 class TimeInterval {
   final int start;
