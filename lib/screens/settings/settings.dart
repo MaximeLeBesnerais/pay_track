@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pay_track/models/colors_theming.dart';
 import 'package:pay_track/models/subscription.dart';
 import 'package:pay_track/models/user.dart';
 import 'package:pay_track/screens/settings/get_greetings.dart';
@@ -15,12 +16,13 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   late final UserPref userPref;
+  late final ColorsTheming colorsTheming;
 
   String? name;
   Subscription? salary;
   MonthlyMode monthlyMode = MonthlyMode.byMonthDay;
-  DominantColor dominantColor = DominantColor.red;
-  ThemeMode themeMode = ThemeMode.system;
+  late DominantColor dominantColor;
+  late ChosenTheming themeMode;
 
   bool editMode = false;
 
@@ -28,6 +30,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void initState() {
     super.initState();
     userPref = UserPref();
+    colorsTheming = ColorsTheming();
     _setupData();
     userPref.addListener(() {
       _setupData();
@@ -42,12 +45,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   void _setupData() async {
     await userPref.init();
+    await colorsTheming.init();
+
     setState(() {
       name = userPref.name;
       salary = userPref.salary;
       monthlyMode = userPref.monthlyMode;
-      dominantColor = userPref.dominantColor;
-      themeMode = userPref.themeMode;
+      dominantColor = colorsTheming.dominantColor;
+      themeMode = colorsTheming.chosenTheming;
     });
   }
 
@@ -70,7 +75,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   for (var color in colorMapEnum.entries)
                     InkWell(
                       onTap: () {
-                        userPref.setDominantColor(color.key);
+                        colorsTheming.dominantColor = color.key;
+                        colorsTheming.save();
                       },
                       child: Container(
                         width: 36,
