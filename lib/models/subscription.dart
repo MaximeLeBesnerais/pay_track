@@ -7,7 +7,7 @@ enum Category { music, video, gaming, social, income, taxes, other }
 class Subscription {
   final String name;
   final DateTime startDate;
-  final double price;
+  final double amount;
   final Category category;
   final RecurrenceRule recurrenceRule;
   final DateTime? endDate;
@@ -17,7 +17,7 @@ class Subscription {
   Subscription({
     required this.name,
     required this.startDate,
-    required this.price,
+    required this.amount,
     required this.category,
     required this.recurrenceRule,
     this.endDate,
@@ -27,7 +27,7 @@ class Subscription {
   Subscription.fromJson(Map<String, dynamic> json)
       : name = json['name'],
         startDate = DateTime.parse(json['startDate']),
-        price = json['price'].toDouble(),
+        amount = json['price'].toDouble(),
         category = Category.values[json['category']],
         recurrenceRule = RecurrenceRule.fromJson(json['recurrenceRule']),
         endDate = json['endDate'] != null ? DateTime.parse(json['endDate']) : null,
@@ -37,7 +37,7 @@ class Subscription {
     return {
       'name': name,
       'startDate': startDate.toIso8601String(),
-      'price': price,
+      'price': amount,
       'category': category.index,
       'recurrenceRule': recurrenceRule.toJson(),
       'endDate': endDate?.toIso8601String(),
