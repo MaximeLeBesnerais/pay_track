@@ -8,6 +8,15 @@ enum MonthlyMode { fixedInterval, byMonthDay }
 
 enum DominantColor { red, green, blue, yellow, purple, orange }
 
+const Map<DominantColor, Color> colorMapEnum = {
+  DominantColor.red: Colors.red,
+  DominantColor.green: Colors.green,
+  DominantColor.blue: Colors.blue,
+  DominantColor.yellow: Colors.yellow,
+  DominantColor.purple: Colors.purple,
+  DominantColor.orange: Colors.orange,
+};
+
 class UserPref {
   UserPref._privateConstructor();
 
@@ -35,12 +44,12 @@ class UserPref {
   String? name;
   Subscription? salary;
   MonthlyMode monthlyMode = MonthlyMode.byMonthDay;
-  DominantColor dominantColor = DominantColor.red;
+  DominantColor dominantColor = DominantColor.blue;
   ThemeMode themeMode = ThemeMode.system;
   bool _isInitialized = false;
   static const String sharedPrefKey = 'user_pref';
 
-  Future<void> _init() async {
+  Future<void> init() async {
     if (_isInitialized) return;
     try {
       final prefs = await SharedPreferences.getInstance();
@@ -64,7 +73,7 @@ class UserPref {
 
   Future<void> save() async {
     if (!_isInitialized) {
-      await _init();
+      await init();
     }
     try {
       final prefs = await SharedPreferences.getInstance();
