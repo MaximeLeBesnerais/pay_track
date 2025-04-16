@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pay_track/models/user.dart';
 import 'package:pay_track/screens/home.dart';
 import 'package:pay_track/screens/settings/settings.dart';
 import 'package:pay_track/screens/stats.dart';
@@ -48,6 +49,7 @@ class _HomeHandlerState extends State<_HomeHandler> {
           ),
         ],
         currentIndex: _selectedIndex,
+        selectedItemColor: Theme.of(context).colorScheme.primary,
         onTap: _onItemTapped,
       ),
     );
@@ -59,28 +61,50 @@ class _HomeHandlerState extends State<_HomeHandler> {
 
 
 
-void main() {
+void main() async {
+  final userPref = UserPref();
+  await userPref.init();
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final userPref = UserPref();
+  Color appColor = Colors.blue;
+  ThemeMode themeMode = ThemeMode.system;
+
+  void setThemeMode(ThemeMode mode) {
+    setState(() {
+      themeMode = mode;
+    });
+  }
+
+  void setAppColor(Color color) {
+    setState(() {
+      appColor = color;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: appColor),
       ),
       darkTheme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.deepPurple,
+          seedColor: appColor,
           brightness: Brightness.dark,
         ),
       ),
-      themeMode: ThemeMode.system,
+      themeMode: themeMode,
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
