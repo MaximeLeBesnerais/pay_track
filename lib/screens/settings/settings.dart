@@ -21,7 +21,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   String? name;
   Subscription? salary;
   MonthlyMode monthlyMode = MonthlyMode.byMonthDay;
-  late DominantColor dominantColor;
+  late DominantColor dominantColor = DominantColor.blue;
   late ChosenTheming themeMode;
 
   bool editMode = false;
@@ -32,8 +32,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
     userPref = UserPref();
     colorsTheming = ColorsTheming();
     _setupData();
+    _setupTheming();
     userPref.addListener(() {
       _setupData();
+    });
+    colorsTheming.addListener(() {
+      _setupTheming();
     });
   }
 
@@ -45,12 +49,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   void _setupData() async {
     await userPref.init();
-    await colorsTheming.init();
 
     setState(() {
       name = userPref.name;
       salary = userPref.salary;
       monthlyMode = userPref.monthlyMode;
+    });
+  }
+
+  void _setupTheming() async {
+    await colorsTheming.init();
+    setState(() {
       dominantColor = colorsTheming.dominantColor;
       themeMode = colorsTheming.chosenTheming;
     });

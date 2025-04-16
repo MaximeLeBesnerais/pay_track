@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pay_track/models/colors_theming.dart';
 import 'package:pay_track/models/user.dart';
 import 'package:pay_track/screens/home.dart';
 import 'package:pay_track/screens/settings/settings.dart';
@@ -63,7 +64,9 @@ class _HomeHandlerState extends State<_HomeHandler> {
 
 void main() async {
   final userPref = UserPref();
+  final colorsTheming = ColorsTheming(); 
   await userPref.init();
+  await colorsTheming.init();
   runApp(const MyApp());
 }
 
@@ -76,8 +79,9 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final userPref = UserPref();
-  Color appColor = Colors.blue;
-  ThemeMode themeMode = ThemeMode.system;
+  final colorsTheming = ColorsTheming();
+  late Color appColor = colorMapEnum[colorsTheming.dominantColor]!;
+  late ThemeMode themeMode = themeModeMapEnum[colorsTheming.chosenTheming]!;
 
   void setThemeMode(ThemeMode mode) {
     setState(() {
@@ -88,6 +92,17 @@ class _MyAppState extends State<MyApp> {
   void setAppColor(Color color) {
     setState(() {
       appColor = color;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    colorsTheming.addListener(() {
+      setState(() {
+        appColor = colorMapEnum[colorsTheming.dominantColor]!;
+        themeMode = themeModeMapEnum[colorsTheming.chosenTheming]!;
+      });
     });
   }
 
