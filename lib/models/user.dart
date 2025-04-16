@@ -123,8 +123,13 @@ class UserPref {
     await save();
   }
 
-  Future<void> setAll(String? name, Subscription? salary,
-      MonthlyMode monthlyMode, DominantColor dominantColor, ThemeMode themeMode) async {
+  Future<void> setAll(
+    String? name,
+    Subscription? salary,
+    MonthlyMode monthlyMode,
+    DominantColor dominantColor,
+    ThemeMode themeMode,
+  ) async {
     this.name = name;
     this.salary = salary;
     this.monthlyMode = monthlyMode;
