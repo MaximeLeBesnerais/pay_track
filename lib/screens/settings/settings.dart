@@ -69,7 +69,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.only(
+          left: 16,
+          right: 16,
+          top: 44,
+        ),
         children: [
           Text(getGreeting(), style: Theme.of(context).textTheme.headlineLarge),
           const SizedBox(height: 16),
