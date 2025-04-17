@@ -4,16 +4,16 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-enum DominantColor { red, green, blue, yellow, purple, orange }
+enum DominantColor { red, green, blue, yellow, purple, teal }
 enum ChosenTheming { light, dark, system }
 
 const Map<DominantColor, Color> colorMapEnum = {
-  DominantColor.red: Colors.red,
+  DominantColor.blue: Colors.indigo,
+  DominantColor.teal: Colors.teal,
   DominantColor.green: Colors.green,
-  DominantColor.blue: Colors.blue,
-  DominantColor.yellow: Colors.yellow,
-  DominantColor.purple: Colors.purple,
-  DominantColor.orange: Colors.orange,
+  DominantColor.red: Colors.red,
+  DominantColor.yellow: Colors.amber,
+  DominantColor.purple: Colors.pink,
 };
 
 const Map<ChosenTheming, ThemeMode> themeModeMapEnum = {
