@@ -33,6 +33,7 @@ dependencies:
 
   shared_preferences: ^2.5.3
   rrule: ^0.2.17
+  table_calendar: ^3.2.0
 
 dev_dependencies:
   flutter_test:
