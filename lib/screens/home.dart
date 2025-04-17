@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
               shape: BoxShape.circle,
             ),
             selectedDecoration: BoxDecoration(
-              color: Theme.of(context).buttonTheme.colorScheme?.onPrimary,
+              color: Theme.of(context).buttonTheme.colorScheme?.secondary,
               shape: BoxShape.circle,
             ),
           ),
