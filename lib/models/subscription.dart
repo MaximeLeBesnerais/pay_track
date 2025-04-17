@@ -2,15 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:rrule/rrule.dart';
 
-enum Category { music, video, gaming, social, income, taxes, other }
+enum Category { food, music, video, gaming, social, income, other }
 
 const Map<Category, IconData> categoryIcons = {
+  Category.food: Icons.fastfood_rounded,
   Category.music: Icons.audiotrack_rounded,
   Category.video: Icons.ondemand_video_rounded,
   Category.gaming: Icons.videogame_asset_rounded,
   Category.social: Icons.people_rounded,
   Category.income: Icons.monetization_on,
-  Category.taxes: Icons.money_off_rounded,
   Category.other: Icons.category,
 };
 
