@@ -1,17 +1,24 @@
 // category for the subscription like music, video, etc.
+import 'package:flutter/material.dart';
 import 'package:rrule/rrule.dart';
 
 enum Category { music, video, gaming, social, income, taxes, other }
-enum ThemeColor { blue, green, red, purple, orange }
-enum ThemeStyle { light, dark, system }
+
+const Map<Category, IconData> categoryIcons = {
+  Category.music: Icons.audiotrack_rounded,
+  Category.video: Icons.ondemand_video_rounded,
+  Category.gaming: Icons.videogame_asset_rounded,
+  Category.social: Icons.people_rounded,
+  Category.income: Icons.monetization_on,
+  Category.taxes: Icons.money_off_rounded,
+  Category.other: Icons.category,
+};
 
 class Subscription {
   final String name;
   final DateTime startDate;
   final double amount;
   final Category category;
-  final ThemeColor? themeColor;
-  final ThemeStyle? themeStyle;
   final RecurrenceRule recurrenceRule;
   final DateTime? endDate;
   final String? description;
@@ -23,8 +30,6 @@ class Subscription {
     required this.amount,
     required this.category,
     required this.recurrenceRule,
-    this.themeColor,
-    this.themeStyle,
     this.endDate,
     this.description,
   });
@@ -34,12 +39,6 @@ class Subscription {
         startDate = DateTime.parse(json['startDate']),
         amount = json['price'].toDouble(),
         category = Category.values[json['category']],
-        themeColor = json['themeColor'] != null
-            ? ThemeColor.values[json['themeColor']]
-            : null,
-        themeStyle = json['themeStyle'] != null
-            ? ThemeStyle.values[json['themeStyle']]
-            : null,
         recurrenceRule = RecurrenceRule.fromJson(json['recurrenceRule']),
         endDate = json['endDate'] != null ? DateTime.parse(json['endDate']) : null,
         description = json['description'];
