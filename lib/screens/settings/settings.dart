@@ -3,8 +3,7 @@ import 'package:pay_track/models/colors_theming.dart';
 import 'package:pay_track/models/subscription.dart';
 import 'package:pay_track/models/user.dart';
 import 'package:pay_track/screens/settings/name_salary.dart';
-import 'package:pay_track/tools/m_card.dart';
-
+import 'package:pay_track/screens/settings/theme_card.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -78,39 +77,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         children: [
           const SizedBox(height: 16),
           NameSalaryCard(),
-          mCard([
-            Text("Theme", style: Theme.of(context).textTheme.titleLarge),
-            const SizedBox(height: 8),
-            Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  for (var color in colorMapEnum.entries)
-                    InkWell(
-                      onTap: () {
-                        colorsTheming.dominantColor = color.key;
-                        colorsTheming.save();
-                      },
-                      child: Container(
-                        width: 36,
-                        height: 36,
-                        margin: const EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: color.value,
-                          border: Border.all(
-                            color: dominantColor == color.key
-                                ? Colors.black
-                                : Colors.transparent,
-                            width: 3,
-                          ),
-                        ),
-                      ),
-                    ),
-                ],
-              ),
-            ),
-          ]),
+          ThemeCard()
         ],
       ),
     );
