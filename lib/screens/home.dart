@@ -10,12 +10,15 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+DateTime normalizeDate(DateTime date) =>
+    DateTime(date.year, date.month, date.day);
+
 class _HomeScreenState extends State<HomeScreen> {
   DateTime _focusDate = DateTime.now();
   DateTime _selectedDate = DateTime.now();
   CalendarFormat _calendarFormat = CalendarFormat.month;
   final Map<DateTime, List<Subscription>> _events = {
-    DateTime.now(): [
+    normalizeDate(DateTime.now()): [
       Subscription(
         amount: 10.0,
         name: 'Event 1',
@@ -45,12 +48,55 @@ class _HomeScreenState extends State<HomeScreen> {
             left: 16.0,
             right: 16.0,
             top: 44.0,
-            bottom: 16.0),
+            bottom: 16.0,
+          ),
           child: Column(
             children: [
               TableCalendar(
-                eventLoader: (day) => 
-                    _events[day] ?? [],
+                calendarBuilders: CalendarBuilders(
+                  markerBuilder: (context, date, events) {
+                    if (events.isEmpty) return const SizedBox.shrink();
+
+                    final visibleEvents = events.take(3).toList();
+                    final tooMany = events.length > 3;
+
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(visibleEvents.length, (i) {
+                        final isLast = i == 2 && tooMany;
+
+                        if (isLast && tooMany) {
+                          return Container(
+                            width: 10,
+                            height: 10,
+                            margin: const EdgeInsets.symmetric(horizontal: 0),
+                            alignment: Alignment.center,
+                            child: const Text(
+                              '▼',
+                              style: TextStyle(
+                                fontSize: 10,
+                                color: Colors.blue,
+                                height: 1,
+                              ),
+                            ),
+                          );
+                        } else {
+                          return Container(
+                            width: 6,
+                            height: 6,
+                            margin: const EdgeInsets.symmetric(horizontal: 1),
+                            decoration: const BoxDecoration(
+                              color: Colors.blue,
+                              shape: BoxShape.circle,
+                            ),
+                          );
+                        }
+                      }),
+                    );
+                  },
+                ),
+
+                eventLoader: (day) => _events[normalizeDate(day)] ?? [],
                 headerStyle: HeaderStyle(
                   titleCentered: true,
                   formatButtonVisible: false,
