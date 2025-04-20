@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pay_track/models/subscription.dart';
-import 'package:pay_track/screens/home/calendar_builder.dart';
 import 'package:pay_track/tools/get_greetings.dart';
 import 'package:rrule/rrule.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -77,7 +76,6 @@ class _HomeScreenState extends State<HomeScreen> {
               Text(getGreeting(),
                   style: Theme.of(context).textTheme.displayLarge),
               TableCalendar(
-                calendarBuilders: calBuild(), 
                 eventLoader: (day) => _events[normalizeDate(day)] ?? [],
                 headerStyle: HeaderStyle(
                   titleCentered: true,
