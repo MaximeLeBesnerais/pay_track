@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pay_track/models/colors_theming.dart';
 import 'package:pay_track/models/subscription.dart';
 import 'package:pay_track/models/user.dart';
-import 'package:pay_track/screens/settings/get_greetings.dart';
+import 'package:pay_track/tools/get_greetings.dart';
 import 'package:pay_track/screens/settings/name_salary.dart';
 import 'package:pay_track/tools/m_card.dart';
 
