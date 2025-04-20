@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pay_track/models/colors_theming.dart';
 import 'package:pay_track/models/user.dart';
-import 'package:pay_track/screens/home.dart';
+import 'package:pay_track/screens/home/home.dart';
 import 'package:pay_track/screens/settings/settings.dart';
 import 'package:pay_track/screens/stats.dart';
 
