@@ -97,4 +97,13 @@ class ColorsTheming {
     _chosenTheming = value;
     save();
   }
+
+  Future<void> setTheming(ChosenTheming theming) async {
+    _chosenTheming = theming;
+    await save();
+  }
+  Future<void> setDominantColor(DominantColor color) async {
+    _dominantColor = color;
+    await save();
+  }
 }

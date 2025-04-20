@@ -44,8 +44,7 @@ class _ThemeCardState extends State<ThemeCard> {
             for (var color in colorMapEnum.entries)
               InkWell(
                 onTap: () {
-                  colorsTheming.dominantColor = color.key;
-                  colorsTheming.save();
+                  colorsTheming.setDominantColor(color.key);
                 },
                 child: Container(
                   width: 36,
