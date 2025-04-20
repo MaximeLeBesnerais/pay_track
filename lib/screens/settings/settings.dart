@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pay_track/models/colors_theming.dart';
 import 'package:pay_track/models/subscription.dart';
 import 'package:pay_track/models/user.dart';
-import 'package:pay_track/tools/get_greetings.dart';
 import 'package:pay_track/screens/settings/name_salary.dart';
 import 'package:pay_track/tools/m_card.dart';
 
@@ -68,14 +67,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Settings"),
+      ),
       body: ListView(
         padding: EdgeInsets.only(
           left: 16,
           right: 16,
-          top: 44,
         ),
         children: [
-          Text(getGreeting(), style: Theme.of(context).textTheme.headlineLarge),
           const SizedBox(height: 16),
           NameSalaryCard(),
           mCard([
