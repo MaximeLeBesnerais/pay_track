@@ -163,7 +163,6 @@ class SubscriptionList {
     return subscriptions.where((subscription) => subscription.recurrenceRule == rule).toList();
   }
 
-  // sort with bool for ascending or descending
   void sortSubscriptionsByDate({bool ascending = true}) {
     subscriptions.sort((a, b) => ascending
         ? a.startDate.compareTo(b.startDate)
