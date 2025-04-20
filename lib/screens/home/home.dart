@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pay_track/models/subscription.dart';
+import 'package:pay_track/screens/home/calendar_builder.dart';
 import 'package:rrule/rrule.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -73,9 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               TableCalendar(
-                // calendarBuilders: 
-                
-
+                calendarBuilders: calBuild(), 
                 eventLoader: (day) => _events[normalizeDate(day)] ?? [],
                 headerStyle: HeaderStyle(
                   titleCentered: true,
