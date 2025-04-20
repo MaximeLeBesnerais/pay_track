@@ -13,12 +13,19 @@ class _ThemeCardState extends State<ThemeCard> {
   late final ColorsTheming colorsTheming;
   late DominantColor dominantColor = DominantColor.blue;
   late ChosenTheming themeMode;
+  Set<ChosenTheming> _selected = <ChosenTheming>{ChosenTheming.system};
+  late List<Widget> segments = <Widget>[
+    const Text('Light'),
+    const Text('Dark'),
+    const Text('System'),
+  ];
 
   void _setupTheming() async {
     await colorsTheming.init();
     setState(() {
       dominantColor = colorsTheming.dominantColor;
       themeMode = colorsTheming.chosenTheming;
+      _selected = <ChosenTheming>{themeMode};
     });
   }
 
@@ -64,6 +71,38 @@ class _ThemeCardState extends State<ThemeCard> {
                 ),
               ),
           ],
+        ),
+      ),
+      Divider(),
+      const SizedBox(width: 8),
+      Text("Theme Mode", style: Theme.of(context).textTheme.titleLarge),
+      const SizedBox(height: 16),
+      Center(
+        child: SegmentedButton(
+          segments: [
+            ButtonSegment<ChosenTheming>(
+              value: ChosenTheming.light,
+              label: segments[0],
+              icon: const Icon(Icons.wb_sunny_outlined),
+            ),
+            ButtonSegment<ChosenTheming>(
+              value: ChosenTheming.dark,
+              label: segments[1],
+              icon: const Icon(Icons.nightlight_round_outlined),
+            ),
+            ButtonSegment<ChosenTheming>(
+              value: ChosenTheming.system,
+              label: segments[2],
+              icon: const Icon(Icons.settings_system_daydream_outlined),
+            ),
+          ],
+          selected: _selected,
+          onSelectionChanged: (p0) => {
+            setState(() {
+              _selected = p0;
+              colorsTheming.setTheming(p0.first);
+            }),
+          },
         ),
       ),
     ]);
