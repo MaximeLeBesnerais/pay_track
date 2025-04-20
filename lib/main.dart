@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pay_track/models/colors_theming.dart';
+import 'package:pay_track/models/subscription.dart';
 import 'package:pay_track/models/user.dart';
 import 'package:pay_track/screens/home/home.dart';
 import 'package:pay_track/screens/settings/settings.dart';
@@ -65,8 +66,10 @@ class _HomeHandlerState extends State<_HomeHandler> {
 void main() async {
   final userPref = UserPref();
   final colorsTheming = ColorsTheming(); 
+  final subList = SubscriptionList();
   await userPref.init();
   await colorsTheming.init();
+  await subList.init();
   runApp(const MyApp());
 }
 
